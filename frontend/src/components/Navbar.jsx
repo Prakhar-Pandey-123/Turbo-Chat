@@ -33,7 +33,7 @@ const Navbar=()=>{
                     Settings
                 </button>
 
-                <button className="text-pink-200 cursor-pointer flex items-center bg-gray-800 px-1 rounded-md"  onClick={()=>navigate("/settings")}>
+                <button className="text-pink-200 cursor-pointer flex items-center bg-gray-800 px-1 rounded-md"  onClick={()=>navigate("/profile")}>
                     <CiUser className="m-1" />
                     Profile
                 </button>
