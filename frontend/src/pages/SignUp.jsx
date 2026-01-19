@@ -11,11 +11,10 @@ const [email,setEmail]=useState("")
 async function create(e){
     e.preventDefault()
     const url=import.meta.env.VITE_BASE_URL
-    console.log("url is=",url)
-
-    console.log("name is=",name);
-    console.log("password is ",password)
-    console.log("email is ",email)
+    // console.log("url is=",url)
+    // console.log("name is=",name);
+    // console.log("password is ",password)
+    // console.log("email is ",email)
 
     const res=await axios.post(url+"/signup",{
         fullName:name,

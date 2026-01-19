@@ -27,7 +27,7 @@ const checkLog = async (req, res, next) => {
     catch (error) {
         console.log(error)
         return res.status(500).json({
-            message:"internal server error"
+            message:"internal server error at checkLog"
         })
 
     }

@@ -3,15 +3,18 @@ import { CiSettings } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
 import { CiUser } from "react-icons/ci";
 import { IoLogOutOutline } from "react-icons/io5";
+import axios from "axios";
 
 const Navbar=()=>{
     const token=localStorage.getItem("token");
     const navigate=useNavigate();
 
-    const logOut=()=>{
+    const logOut=async()=>{
         let token=localStorage.getItem("jwt")
         console.log(token)
         localStorage.setItem("jwt","");
+        await axios.get("/logout");
+        console.log("token=",token)
     }
 
     return(

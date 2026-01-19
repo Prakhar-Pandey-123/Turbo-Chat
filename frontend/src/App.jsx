@@ -8,6 +8,7 @@ import { Toaster } from "react-hot-toast"
 import Profile from "./pages/Profile"
 
 function App(){
+  const token=localStorage.getItem("token");
   return(
     <div className="bg-zinc-800">
       <Navbar />

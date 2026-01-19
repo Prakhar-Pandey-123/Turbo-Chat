@@ -86,7 +86,7 @@ const logOut = (req, res) => {
 }
 
 
-export const update = async (req, res) => {
+const update = async (req, res) => {
     try {
         const { fullName, pic } = req.body;
         const userId = req.user._id;
@@ -97,8 +97,8 @@ export const update = async (req, res) => {
             })
         }
 
-        const responseCloud=await cloudinary.uploader.upload(
-            pic,{folder:"profiles"})
+        const responseCloud = await cloudinary.uploader.upload(
+            pic, { folder: "profiles" })
 
         const response = await User.findByIdAndUpdate(userId, {
             fullName: fullName,
@@ -107,16 +107,36 @@ export const update = async (req, res) => {
 
         return res.status(200).json({
             message: "profile updated successfully",
-            response:response
+            response: response
         })
     }
     catch (error) {
         console.log(error)
         return res.status(500).json({
+            message: "internal server error at update"
+        })
+    }
+
+}
+
+const userData = async (req, res) => {
+    try {
+        const user = req.user;
+        if (!user) {
+            return res.status(400).json({
+                message: "user not found"
+            })
+        }
+        return res.status(200).json({
+            user: user
+        })
+    }
+    catch (error) {
+        console.log(error)
+        return res.status(200).json({
             message:"internal server error"
         })
     }
-    
 }
 
-export { signUp, logIn, logOut }
+export { signUp, logIn, logOut, update, userData }
