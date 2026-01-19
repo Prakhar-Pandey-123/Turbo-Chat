@@ -2,9 +2,10 @@ import { FaRegMessage } from "react-icons/fa6";
 import { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
-
+const navigate=useNavigate()
 const [password,setPassword]=useState("")
 const [email,setEmail]=useState("")
 
@@ -26,8 +27,10 @@ async function create(e){
     });
     const token=res.data.token;
     localStorage.setItem("jwt",token);
+    localStorage.setItem("token",token);
     console.log("token =" ,token);
     toast.success("Logged in successfully")
+    navigate("/profile")
     }
     catch(e){
         toast.error("error in logging in")

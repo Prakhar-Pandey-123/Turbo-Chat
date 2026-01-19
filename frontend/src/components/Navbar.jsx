@@ -3,6 +3,7 @@ import { CiSettings } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
 import { CiUser } from "react-icons/ci";
 import { IoLogOutOutline } from "react-icons/io5";
+import toast from "react-hot-toast";
 import axios from "axios";
 
 const Navbar=()=>{
@@ -13,21 +14,31 @@ const Navbar=()=>{
         let token=localStorage.getItem("jwt")
         console.log(token)
         localStorage.setItem("jwt","");
+        localStorage.setItem("token","");
         await axios.get("/logout");
         console.log("token=",token)
+        toast.success("logged out successfully")
+        navigate("/login")
     }
 
     return(
         <div className="bg-zinc-800"> 
         {
             token?<div className="pt-4 flex items-center justify-around ">
-                <div className="flex bg-gray-800 p-2">
-                <div className="pr-2 text-pink-200 pt-1">
+                <button className="flex bg-gray-800 p-2 cursor-pointer"
+                onClick={()=>{
+                    navigate("/")}}
+                >
+                <div className="pr-2 text-pink-200 pt-1"
+                
+                >
                     <FaRegMessage/>
                     </div>
-                    <div className="text-pink-200">
-                     Chatty</div>
-                </div>
+                    <div className="text-pink-200"
+                    
+                    >
+                     Turbo-Chat</div>
+                </button>
 
                 <div className="flex  gap-4">
 
