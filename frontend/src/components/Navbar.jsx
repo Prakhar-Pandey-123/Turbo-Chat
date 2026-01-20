@@ -40,7 +40,7 @@ const Navbar=()=>{
                      Turbo-Chat</div>
                 </button>
 
-                <div className="flex  gap-4">
+                <div className="flex gap-4">
 
                 <button className="text-pink-200 cursor-pointer flex items-center  p-1 rounded-md bg-gray-800"  onClick={()=>navigate("/settings")}>
                     <CiSettings className="m-1" />
