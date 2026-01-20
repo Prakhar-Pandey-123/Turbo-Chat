@@ -3,7 +3,15 @@ import { CiUser } from "react-icons/ci";
 import axios from "axios"
 import { useEffect,useState } from "react";
 import toast from "react-hot-toast";
+
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { setSelectedUser } from "../redux/userChat";
+
 const Sidebar=()=>{
+  const dispatch=useDispatch();
+  const userrn=useSelector(state=>state.chat.selectedUser);
+  console.log("userrn=",userrn);
 
     const [users,setUsers]=useState([]);
     const base=import.meta.env.VITE_BASE_URL;
@@ -19,7 +27,6 @@ const Sidebar=()=>{
         catch(e){
             toast.error("failed to load all users")
         }
-        
     }
 
     useEffect(()=>{
@@ -46,10 +53,16 @@ const Sidebar=()=>{
             className={`
               w-full p-3 flex justify-start
               gap-3
-              hover:bg-base-300
+              hover:bg-zinc-700
               transition-colors
-              cursor-pointer
+              cursor-pointer rounded-lg
+              ${userrn!==null && 
+                userrn._id===user._id?"bg-zinc-700 rounded-lg":""
+              }
             `}
+            onClick={()=>{
+              dispatch(setSelectedUser(user))
+            }}
           >
             <div className="relative lg:mx-0 ">
               <img

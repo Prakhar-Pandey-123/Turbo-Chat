@@ -1,11 +1,11 @@
 import {createSlice} from "@reduxjs/toolkit"
 
-// slice=redux+actions+state
+// slice=reducers+actions+state
 
 const themeSlice=createSlice({
     name:"theme",//name of the slice
     initialState:{
-        value:localStorage.getItem("theme")||"light"  
+        value:localStorage.getItem("theme")||"light"
         //app loads-checks localstorage-if not found then "light",this is the initial state
     },
     reducers:{//these are fns that change state

@@ -1,12 +1,16 @@
-// import { useChatStore } from "../store/useChatStore";
+import {useSelector} from "react-redux"
+import { useDispatch } from "react-redux";
+import { setSelectedUser } from "../redux/userChat";
 
 import Sidebar from "../components/Sidebar";
-// import NoChatSelected from "../components/NoChatSelected";
-// import ChatContainer from "../components/ChatContainer";
+import NoChatSelected from "../components/NoChatSelected";
+import ChatContainer from "../components/ChatContainer";
 
 const HomePage = () => {
-//   const { selectedUser } = useChatStore();
 
+  const dispatch=useDispatch();
+  const selectedUser=useSelector(state=>state.chat.selectedUser);
+  
   return (
     <div className="h-screen bg-zinc-800">
       <div className="flex items-center justify-center pt-20 px-4">
@@ -14,7 +18,7 @@ const HomePage = () => {
           <div className="flex h-full rounded-lg overflow-hidden">
             <Sidebar />
 
-            {/* {!selectedUser ? <NoChatSelected /> : <ChatContainer />} */}
+            {!selectedUser ? <NoChatSelected /> : <ChatContainer />}
           </div>
         </div>
       </div>
@@ -22,15 +26,3 @@ const HomePage = () => {
   );
 };
 export default HomePage;
-// import Sidebar from "../components/Sidebar"
-// const Home=()=>{
-//     return(
-//         <div className="flex items-center justify-center ">
-//             <div className="bg-zinc-900 min-h-screen min-w-230 mt-2 rounded-md">
-//                 <Sidebar></Sidebar>
-//             </div>
-
-//         </div>
-//     )
-// }
-// export default Home
