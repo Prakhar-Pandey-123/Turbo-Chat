@@ -13,7 +13,7 @@ function App(){
   const token=localStorage.getItem("token");
   const theme=useSelector((state)=>state.theme.value)
   return(
-    <div className="min-h-screen bg-zinc-800 w-[100%] min-h-screen" data-theme={theme} >
+    <div className="h-screen bg-base-200 w-[100%]  overflow-hidden" data-theme={theme} >
       <Navbar />
       <Routes>
         <Route element={<Home></Home>} path="/"></Route>

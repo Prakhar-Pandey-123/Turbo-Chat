@@ -13,12 +13,15 @@ const HomePage = () => {
   
   return (
     <div className="h-screen bg-zinc-800">
-      <div className="flex items-center justify-center pt-20 px-4">
+      <div className="flex items-center justify-center pt-10 px-4">
         <div className="bg-base-100 rounded-lg shadow-cl w-full max-w-6xl h-[calc(100vh-8rem)]">
           <div className="flex h-full rounded-lg overflow-hidden">
-            <Sidebar />
-
+            <div className="w-1/4">
+                <Sidebar />
+            </div>
+            
             {!selectedUser ? <NoChatSelected /> : <ChatContainer />}
+            
           </div>
         </div>
       </div>
