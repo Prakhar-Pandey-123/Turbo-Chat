@@ -1,7 +1,7 @@
 const Middle=()=>{
     return(
         <div>
-            bye
+            
         </div>
     )
 }

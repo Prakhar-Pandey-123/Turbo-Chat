@@ -3,7 +3,9 @@ import User from "../models/users.js";
 
 const checkLog = async (req, res, next) => {
     try {
+        console.log("inside checklog")
         const token = req.cookies.jwt;
+        console.log("token=",token)
         if(!token){
             return res.status(400).json({
                 message:"missing token"
@@ -19,6 +21,7 @@ const checkLog = async (req, res, next) => {
             })
         }
         else {
+            console.log("user=",user);
             req.user = user;
             next()
         }

@@ -3,12 +3,13 @@ import { CiUser } from "react-icons/ci";
 import axios from "axios"
 import { useEffect,useState } from "react";
 import toast from "react-hot-toast";
-
+import {useNavigate} from "react-router-dom"
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { setSelectedUser } from "../redux/userChat";
 
 const Sidebar=()=>{
+  const navigate=useNavigate()
   const dispatch=useDispatch();
   const userrn=useSelector(state=>state.chat.selectedUser);
   console.log("userrn=",userrn);
@@ -21,7 +22,7 @@ const Sidebar=()=>{
             withCredentials:true        
         })
         // console.log(data);
-        console.log("data.data.users=",data.data.users);
+        // console.log("data.data.users=",data.data.users);
         setUsers(data.data.users)
         }
         catch(e){

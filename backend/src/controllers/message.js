@@ -49,23 +49,44 @@ const allMessages = async (req, res) => {
 
 const sendMessage = async (req, res) => {
     try {
-        const id = req.params;
-        const { text, pic } = req.body;
-        const senderId = req.userId;
+        console.log("hi from sendmssg")
+        const { text = "", pic = "", id } = req.body;
 
-        if (pic) {
+        const senderId = req.user._id;
+        console.log("req.user:", req.user)
+        console.log("senderiD=",senderId);
+       if (!id || (!text && !pic)) {
+    return res.status(400).json({ message: "We require id and text or pic" })
+}
+        if (pic !== "") {
             const cloudres = await cloudinary.uploader.upload(pic);
             const imgurl = cloudres.secure_url;
+            console.log("imgurl=", imgurl);
+            const mssg = await Message.create({
+                senderId: senderId,
+                receiverId: id,
+                text: text,
+                pic: imgurl
+            })
         }
-        const mssg = await Message.create({
-            senderId: senderId,
-            receiverId: id,
-            text: text,
-            pic: imgurl
+        
+        else if (text !== "") {
+            const mssg = await Message.create({
+                senderId: senderId,
+                receiverId: id,
+                text: text,
+                pic: ""
+            })
+        }
+        return res.status(200).json({
+            message:"mssg send successfully"
         })
     }
     catch (error) {
-        
+          return res.status(500).json({
+            message:"internal server error at mssg"
+        })
+
     }
 
 }
