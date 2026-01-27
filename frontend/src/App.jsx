@@ -16,7 +16,9 @@ function App(){
     <div className="h-screen bg-base-200 w-[100%]  overflow-hidden" data-theme={theme} >
       <Navbar />
       <Routes>
-        <Route element={<Home></Home>} path="/"></Route>
+        <Route element={<ProtectedRoute>
+          <Home></Home></ProtectedRoute>
+          } path="/"></Route>
         <Route element={<SignUp></SignUp>} path="/signup"></Route>
         <Route element={<Login></Login>} path="/login"></Route>
 

@@ -3,10 +3,6 @@ const app=express()
 
 import dotenv from "dotenv";
 dotenv.config();
-console.log(
-  "CLOUDINARY_API_KEY:",
-  process.env.CLOUDINARY_API_KEY
-);
 
 
 import cors from "cors"
@@ -20,8 +16,6 @@ app.use(cookieParser())
 
 import authRoutes from "./routes/auth.js"
 import messageRoutes from "./routes/message.js"
-
-
 
 import connectDB from "./lib/db.js";
 

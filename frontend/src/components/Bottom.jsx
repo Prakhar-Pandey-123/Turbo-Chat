@@ -1,7 +1,8 @@
 import { CiImageOn } from "react-icons/ci";
 import { IoIosSend } from "react-icons/io";
 const Bottom=()=>{
-    function send(){
+    function send(e){
+        e.preventDefault()
         
     }
     return(
@@ -13,9 +14,10 @@ const Bottom=()=>{
                 </input>
                 <div className="flex text-3xl gap-4 p-2">
                 <CiImageOn className="cursor-pointer "/>
+                <button type="submit" onClick={send}>
                 <IoIosSend className="cursor-pointer"
-                onClick={send}
-                />
+               
+                /></button>
                 </div>
             </form>
         </div>

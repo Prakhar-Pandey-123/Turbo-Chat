@@ -25,6 +25,7 @@ const Sidebar=()=>{
         setUsers(data.data.users)
         }
         catch(e){
+          console.log(e)
             toast.error("failed to load all users")
         }
     }

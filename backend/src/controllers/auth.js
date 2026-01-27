@@ -139,4 +139,10 @@ const userData = async (req, res) => {
     }
 }
 
-export { signUp, logIn, logOut, update, userData }
+const check=(req,res)=>{
+    return res.status(200).json({
+        message:"verified"
+    })
+}
+
+export { signUp, logIn, logOut, update, userData,check }
