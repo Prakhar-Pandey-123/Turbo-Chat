@@ -6,7 +6,7 @@ import {allUsers, allMessages, sendMessage} from "../controllers/message.js";
 
 router.get("/allUsers",checkLog,allUsers);
 router.post("/send",checkLog,sendMessage)
-router.post("/:id",checkLog,allMessages);
+router.post("/getMssg",checkLog,allMessages);
 
 
 export default router

@@ -16,14 +16,12 @@ const Bottom = () => {
     const send =async (e) => {
         try{
             e.preventDefault()
-            console.log("text=",text)
-            console.log("img=",img)
+          
         if(text==="" && img===null){
             return;
         }
         
            const base=import.meta.env.VITE_BASE_URL;
-           console.log("base=",base)
         const res=await axios.post(base+"/send",{
             text:text,
             pic:img ?? "",
@@ -31,7 +29,6 @@ const Bottom = () => {
         },{
             withCredentials:true
         })
-        console.log("res=",res)
         setText("")
         setImg(null)
 
@@ -58,7 +55,6 @@ const Bottom = () => {
     }
     const unuploadImg=()=>{
         setImg(null)
-        // console.log("img=",img);
     }
     return (
         // btsb=bracker,tilder,sign,bracket

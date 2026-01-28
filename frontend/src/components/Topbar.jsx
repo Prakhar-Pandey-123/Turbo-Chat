@@ -5,7 +5,6 @@ import { RxCross1 } from "react-icons/rx";
 
 const Topbar=()=>{
     const userrn=useSelector(state=>state.chat.selectedUser);
-    console.log("userrn=",userrn);
     const dispatch=useDispatch();
 
     return(
