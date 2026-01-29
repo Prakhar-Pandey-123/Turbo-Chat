@@ -1,9 +1,9 @@
 import express from "express"
-const app=express()
 
 import dotenv from "dotenv";
 dotenv.config();
 
+import {app,server} from "./lib/socket.js"
 
 import cors from "cors"
 app.use(cors({
@@ -31,7 +31,7 @@ app.get("/",(req,res)=>{
     res.send("hi from home ")
 })
 
-app.listen(port,()=>{
+server.listen(port,()=>{
     console.log(`app is listening at port  ${port}`);
     connectDB()
 })

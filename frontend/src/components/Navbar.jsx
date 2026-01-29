@@ -5,6 +5,7 @@ import { CiUser } from "react-icons/ci";
 import { IoLogOutOutline } from "react-icons/io5";
 import toast from "react-hot-toast";
 import axios from "axios";
+import { socket } from "../socket";
 
 const Navbar=()=>{
     const token=localStorage.getItem("token");
@@ -16,7 +17,10 @@ const Navbar=()=>{
         localStorage.setItem("jwt","");
         localStorage.setItem("token","");
         await axios.get("/logout");
-        console.log("token=",token)
+        // console.log("token=",token)
+        
+        socket.disconnect();
+
         toast.success("logged out successfully")
         navigate("/login")
     }

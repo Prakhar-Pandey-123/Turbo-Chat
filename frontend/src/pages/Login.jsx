@@ -4,6 +4,8 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
+import { socket } from "../socket";
+
 const SignUp = () => {
 const navigate=useNavigate()
 const [password,setPassword]=useState("")
@@ -27,6 +29,8 @@ async function create(e){
     });
     const token=res.data.token;
     // console.log("res.data=",res.data);
+    socket.connect();
+    
     localStorage.setItem("jwt",token);
     localStorage.setItem("id",res.data.userId)
     localStorage.setItem("token",token);

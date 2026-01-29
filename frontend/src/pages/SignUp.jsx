@@ -3,6 +3,8 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+import { socket } from "../socket";
+
 const SignUp = () => {
     const navigate=useNavigate();
 const [name,setName]=useState("");
@@ -12,10 +14,6 @@ const [email,setEmail]=useState("")
 async function create(e){
     e.preventDefault()
     const url=import.meta.env.VITE_BASE_URL
-    // console.log("url is=",url)
-    // console.log("name is=",name);
-    // console.log("password is ",password)
-    // console.log("email is ",email)
 
     const res=await axios.post(url+"/signup",{
         fullName:name,
@@ -25,8 +23,11 @@ async function create(e){
         withCredentials: true, 
       });
     const token=res.data.token;
+    
+        socket.connect()
+        
     localStorage.setItem("jwt",token);
-    console.log("token =" ,token);
+    // console.log("token =" ,token);
     }
     return (
         <>
