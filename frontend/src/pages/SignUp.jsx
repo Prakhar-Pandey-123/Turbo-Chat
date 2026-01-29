@@ -1,9 +1,10 @@
 import { FaRegMessage } from "react-icons/fa6";
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
-
+    const navigate=useNavigate();
 const [name,setName]=useState("");
 const [password,setPassword]=useState("")
 const [email,setEmail]=useState("")
@@ -73,10 +74,15 @@ async function create(e){
                                 Create Account
                             </button>
                         </form>
+                        <button className="mt-2 text-white hover:underline cursor-pointer text-pink-200" onClick={()=>{
+                            navigate("/login")
+                        }}>
+                    click here to Log In
+                </button>
                         
                     </div>
                 </div>
-
+                
                 {/* right block */}
                 <div></div>
             </div>

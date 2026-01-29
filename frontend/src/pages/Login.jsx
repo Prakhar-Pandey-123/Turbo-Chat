@@ -26,7 +26,9 @@ async function create(e){
         withCredentials:true
     });
     const token=res.data.token;
+    // console.log("res.data=",res.data);
     localStorage.setItem("jwt",token);
+    localStorage.setItem("id",res.data.userId)
     localStorage.setItem("token",token);
     console.log("token =" ,token);
     toast.success("Logged in successfully")
@@ -52,7 +54,7 @@ async function create(e){
                             <label className="text-[20px] pt-4">
                                 Email
                             </label>
-                            <input className="border-2 border-zinc-900 my-2 text-black" placeholder="Enter your email" type="email"
+                            <input className="border-2 border-zinc-900 my-2 text-white" placeholder="Enter your email" type="email"
                             onChange={(e)=>{
                                 setEmail(e.target.value)
                             }}
@@ -63,7 +65,7 @@ async function create(e){
                             <label className="text-md">
                                 Password
                             </label>
-                            <input className="border-2 border-zinc-900 my-2 text-black rounded-md " placeholder="Enter your password " type="password"
+                            <input className="border-2 border-zinc-900 my-2 text-white rounded-md " placeholder="Enter your password " type="password"
                             onChange={(e)=>{
                                 setPassword(e.target.value)
                             }}
@@ -71,9 +73,16 @@ async function create(e){
                             </input>
 
                             <button type="submit" className="border border-2 mt-2 cursor-pointer bg-blue-700 text-[15px] p-2 rounded-md">
-                                Create Account
+                                Sign In
                             </button>
                         </form>
+                        <button 
+                        onClick={()=>{
+                            navigate("/signup")
+                        }}
+                        className="mt-2 text-white hover:underline cursor-pointer text-pink-200">
+                            click here to Sign Up
+                        </button>
                         
                     </div>
                 </div>

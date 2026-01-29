@@ -6,7 +6,7 @@ import axios from "axios"
 import toast from "react-hot-toast"
 import { useSelector } from "react-redux";
 
-const Bottom = () => {
+const Bottom = ({setMessages}) => {
     
     const [img,setImg]=useState(null)
     const [text,setText]=useState("");
@@ -29,6 +29,7 @@ const Bottom = () => {
         },{
             withCredentials:true
         })
+        setMessages(prev=>[...prev,res.data.mssg]);
         setText("")
         setImg(null)
 

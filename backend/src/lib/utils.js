@@ -11,7 +11,7 @@ const createToken = (res, userId) => {
             httpOnly: true,
             maxAge: 7 * 24 * 60 * 60 * 1000
         })
-        res.json({token})
+        res.json({token,userId:userId})
     }
     catch (error) {
         console.log("error in creating token or cookie",error);

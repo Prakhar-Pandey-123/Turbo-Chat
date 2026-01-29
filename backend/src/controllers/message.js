@@ -62,10 +62,11 @@ const sendMessage = async (req, res) => {
         if (!id || (!text && !pic)) {
             return res.status(400).json({ message: "We require id and text or pic" })
         }
+        let mssg;
         if (pic !== "") {
             const cloudres = await cloudinary.uploader.upload(pic);
             const imgurl = cloudres.secure_url;
-            const mssg = await Message.create({
+             mssg = await Message.create({
                 senderId: senderId,
                 receiverId: id,
                 text: text,
@@ -74,7 +75,7 @@ const sendMessage = async (req, res) => {
         }
 
         else if (text !== "") {
-            const mssg = await Message.create({
+             mssg = await Message.create({
                 senderId: senderId,
                 receiverId: id,
                 text: text,
@@ -82,7 +83,8 @@ const sendMessage = async (req, res) => {
             })
         }
         return res.status(200).json({
-            message: "mssg send successfully"
+            message: "mssg send successfully",
+            mssg:mssg
         })
     }
     catch (error) {
