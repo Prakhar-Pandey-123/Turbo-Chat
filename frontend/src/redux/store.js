@@ -3,10 +3,12 @@ import { configureStore } from "@reduxjs/toolkit";
 // • It holds all slice reducers together
 import themeReducer from "./theme"
 import chatReducer from "./userChat"
+import onlineUsersReducer from "./onlineUsers"
 
 export const store=configureStore({
     reducer:{
         theme:themeReducer,
-        chat:chatReducer
+        chat:chatReducer,
+        onlineUsers:onlineUsersReducer
     }
 });

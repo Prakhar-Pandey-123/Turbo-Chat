@@ -13,18 +13,29 @@ import { useSelector } from "react-redux"
 import { useEffect } from "react"
 import { socket } from "./socket"
 
+import { useDispatch } from "react-redux"
+import { setOnlineUsers } from "./redux/onlineUsers"
+
 function App(){
   const token=localStorage.getItem("token");
+  const dispatch=useDispatch()
 
   useEffect(()=>{
+    if(!token) return;
       socket.connect();
       console.log("socket connecting..")
+
+      const handler=(users)=>{
+        dispatch(setOnlineUsers(users));
+      }
+      socket.on("getOnlineUsers",handler);
     
     return()=>{
+      socket.off("getOnlineUsers",handler);
       socket.disconnect();
       console.log("socket disconnecting..")
     }
-  },[])
+  },[token])
 // lets say i opened the website , app.jsx loads so socket is made, and then i did refresh so that socket is destroyed and new will be made
   const theme=useSelector((state)=>state.theme.value)
   return(

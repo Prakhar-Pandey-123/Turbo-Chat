@@ -4,6 +4,7 @@ import { setSelectedUser } from "../redux/userChat";
 import { RxCross1 } from "react-icons/rx";
 
 const Topbar=()=>{
+    const usersOnline=useSelector(state=>state.onlineUsers);
     const userrn=useSelector(state=>state.chat.selectedUser);
     const dispatch=useDispatch();
 
@@ -16,7 +17,13 @@ const Topbar=()=>{
                 ></img>
                 <div>
                     {userrn.fullName}
-                    <div>offline</div>
+                    {
+                        usersOnline.includes(userrn._id)?
+                        <div>Online</div>
+                        :
+                        <div>Offline</div>
+                    }
+                    
                 </div>
                 </div>
                 <div className="text-xl cursor-pointer" onClick={()=>{

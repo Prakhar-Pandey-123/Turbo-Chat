@@ -5,5 +5,8 @@ const BASE_URL="http://localhost:5000";
 export const socket=io(
     BASE_URL,{
         autoConnect:false,//we will decide when to connect users
+        query:{
+            userId:localStorage.getItem("id")
+        }
     }
 );

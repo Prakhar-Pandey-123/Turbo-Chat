@@ -13,6 +13,7 @@ const Sidebar=()=>{
   const dispatch=useDispatch();
   const userrn=useSelector(state=>state.chat.selectedUser);
   console.log("userrn=",userrn);
+  const onlineUsers=useSelector(state=>state.onlineUsers);
 
     const [users,setUsers]=useState([]);
     const base=import.meta.env.VITE_BASE_URL;
@@ -68,11 +69,18 @@ const Sidebar=()=>{
           >
             <div className="relative lg:mx-0 ">
               <img
-                src={user.profilePic || "https://imgs.search.brave.com/4_Cn1GE-2TZUtK-Nf2KO_FTwMYMCAeK9KjJ5HdEeikg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMjE0/OTkyMjI2Ny92ZWN0/b3IvdXNlci1pY29u/LmpwZz9zPTYxMng2/MTImdz0wJms9MjAm/Yz1pNmpZUGZCMXBX/aks4cGxsNllSeEFL/OWZnQm1mNjUtdzV3/YktIOVIxZHlRPQ"}
+                src={user.pic || "https://imgs.search.brave.com/4_Cn1GE-2TZUtK-Nf2KO_FTwMYMCAeK9KjJ5HdEeikg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMjE0/OTkyMjI2Ny92ZWN0/b3IvdXNlci1pY29u/LmpwZz9zPTYxMng2/MTImdz0wJms9MjAm/Yz1pNmpZUGZCMXBX/aks4cGxsNllSeEFL/OWZnQm1mNjUtdzV3/YktIOVIxZHlRPQ"}
                 alt={user.name}
-                className="size-8
+                className="size-10
                 object-cover rounded-full"
               />
+              {
+               
+                onlineUsers.includes(user._id)&&(
+                  <span className="absolute bottom-0 right-0 size-2 bg-green-500 rounded-full ring-2 ring-zinc-900">
+                  </span>
+                )
+              }
               
             </div>
 
