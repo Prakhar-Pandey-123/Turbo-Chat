@@ -2,13 +2,27 @@ import { useSelector } from "react-redux"
 import { useEffect, useState } from "react"
 import axios from "axios";
 import { useRef } from "react";
-
+import { socket } from "../socket";
 
 const Middle = ({messages,setMessages}) => {
     // const [messages, setMessages] = useState([]);
     const bottomRef=useRef(null)
     let myId = localStorage.getItem("id");
     let userrn = useSelector(state => state.chat.selectedUser);
+
+    useEffect(()=>{
+        socket.on("newMessage",(newMessage)=>{
+            console.log("mssg from io",newMessage);
+            if(
+                newMessage.senderId.toString() ===userrn._id || newMessage.receiverId.toString() ===userrn._id
+            ){
+                setMessages(prev=>[...prev,newMessage]);
+            }
+        });
+        return()=>{
+            socket.off("newMessage")
+        }
+    },[userrn]);
 
     useEffect(() => {
   bottomRef.current?.scrollIntoView();
@@ -55,4 +69,3 @@ const Middle = ({messages,setMessages}) => {
     )
 }
 export default Middle
-// absolute right-0 border-2 rounded-full px-4 my-4 bg-base-300 border-base-300 py-1

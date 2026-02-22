@@ -35,7 +35,7 @@ function App(){
       socket.disconnect();
       console.log("socket disconnecting..")
     }
-  },[token])
+  },[])
 // lets say i opened the website , app.jsx loads so socket is made, and then i did refresh so that socket is destroyed and new will be made
   const theme=useSelector((state)=>state.theme.value)
   return(

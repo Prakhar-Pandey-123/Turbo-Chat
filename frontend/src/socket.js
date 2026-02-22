@@ -7,6 +7,6 @@ export const socket=io(
         autoConnect:false,//we will decide when to connect users
         query:{
             userId:localStorage.getItem("id")
-        }
+        },
     }
 );

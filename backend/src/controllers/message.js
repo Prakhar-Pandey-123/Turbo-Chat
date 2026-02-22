@@ -1,7 +1,10 @@
 import cloudinary from "../lib/cloudinary.js";
+import { getReceiverSocketId } from "../lib/socket.js";
 import Message from "../models/messages.js";
 import User from "../models/users.js"
 import mongoose from "mongoose";
+import { io } from "../lib/socket.js";
+
 const allUsers = async (req, res) => {
     try {
         const myId = req.user._id;
@@ -82,12 +85,23 @@ const sendMessage = async (req, res) => {
                 pic: ""
             })
         }
-        return res.status(200).json({
+        console.log("mssg create in be is",mssg);
+        //  handle real time mssgs
+        const receiverSocketId=getReceiverSocketId(id);
+        console.log("receiverSocketId=",receiverSocketId);
+
+        if(receiverSocketId){
+            io.to(receiverSocketId).emit("newMessage",mssg);
+        }
+
+        res.status(200).json({
             message: "mssg send successfully",
             mssg:mssg
         })
+        
     }
     catch (error) {
+        console.log(error);
         return res.status(500).json({
             message: "internal server error at mssg"
         })

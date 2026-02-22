@@ -19,6 +19,10 @@ const io=new Server(
 
 let userSocketMap={}//to store all the online users id => { userId : socketId }
 
+export function getReceiverSocketId(userId){
+    return userSocketMap[userId];
+}
+
 io.on("connection",(socket)=>{
     console.log("a user connected",socket.id);
 // each user that connects creates a new "socket" on the be ,but there is only socket server in be which is listening 

@@ -3,7 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-import { socket } from "../socket";
+// import { socket } from "../socket";
 
 const SignUp = () => {
     const navigate=useNavigate();
@@ -24,7 +24,7 @@ async function create(e){
       });
     const token=res.data.token;
     
-        socket.connect()
+        // socket.connect()
         
     localStorage.setItem("jwt",token);
     // console.log("token =" ,token);
